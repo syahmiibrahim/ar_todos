@@ -15,53 +15,60 @@ class Display
 		puts "----------------------------------------------"
 	end
 
-	def self.all
+	def self.errors
+		puts "------------------------------------------------"
+		puts "| Error! please type a correct task id/number. |"
+		puts "------------------------------------------------"
+	end
+
+	def self.header
 		puts "------------------------------------------------"
 		puts "|    Your tasks			       	       |"
 		puts "------------------------------------------------"
-		Task.all.each do|tasks|
-			puts " #{tasks.id}. #{tasks.completed} #{(tasks.description).to_s} "
-		end
-		puts "------------------------------------------------"
 	end
 
-	def self.delete_task
-		puts "--------------------------------------------------"
-		puts "| Your task has been deleted! Your latest task is: |"
-		puts "--------------------------------------------------"
-			Task.all.each do|tasks|
-			puts " #{tasks.id}. #{tasks.completed} #{(tasks.description).to_s} "
-		end
-		puts "------------------------------------------------"
+	def self.content(viewer, panjang)
+		printing = panjang.first.description.to_s
+		puts "-" * printing.length + "-" * 12
+
+		viewer.each do |task|
+			printer = printing.length - (task.length - 10) # - 10 to remove first 10 string
+			puts "|" + task + " " * printer + "|"
+			end
+
+		puts "-" * printing.length + "-" * 12
 	end
 
-	def self.complete_task
-		puts "------------------------------------------------"
-		puts "| Task completed! Your updated list:           |"
-		puts "------------------------------------------------"
-			Task.all.each do|tasks|
-			puts " #{tasks.id}. #{tasks.completed} #{(tasks.description).to_s} "
-		end
-		puts "------------------------------------------------"
+	def self.delete_task(input)
+		result = "Your '#{input.description}' task has been deleted!"
+		puts "-" * result.length + "--"
+		puts "|" + result + "|"
+		puts "-" * result.length + "--"
+
 	end
 
-	def self.incomplete
-		puts "------------------------------------------------"
-		puts "| Untick your task. Current list is:           |"
-		puts "------------------------------------------------"
-			Task.all.each do|tasks|
-			puts " #{tasks.id}. #{tasks.completed} #{(tasks.description).to_s} "
-		end
-		puts "------------------------------------------------"
+	def self.complete_task(input)
+		result = "Task number '#{input.id}' completed! phewww!"
+		puts "-" * result.length + "--"
+		puts "|" + result + "|"
+		puts "-" * result.length + "--"
 	end
 
-	def self.add_task
-			puts "------------------------------------------------"
-		puts "| Your task has been added! Your current task is: |"
-		puts "------------------------------------------------"
-			Task.all.each do|tasks|
-			puts " #{tasks.id}. #{tasks.completed} #{(tasks.description).to_s} "
-		end
-		puts "------------------------------------------------"
+	def self.incomplete(input)
+		result = "Untick number '#{input.id}' task."
+		puts "-" * result.length + "--"
+		puts "|" + result + "|"
+		puts "-" * result.length + "--"
+	end
+
+	def self.add_task(input)
+		# result = input.to_s
+		# puts "------------------------------------------------"
+		# puts " Your new task '#{input.to_s}'' has been added!"
+		# puts "------------------------------------------------"
+		result = " Your new task '#{input.to_s}'' has been added!"
+		puts "-" * result.length + "--"
+		puts "|" + result + "|"
+		puts "-" * result.length + "--"
 	end
 end #End of class

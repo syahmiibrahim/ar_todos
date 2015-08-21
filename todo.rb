@@ -8,7 +8,7 @@ class Command
 	def self.run(todo)
 		input = todo[0]
 		case input
-			when "list" then Display.all
+			when "list" then Controller.all 
 			when "add" then Controller.add(todo)
 			when "delete" then Controller.delete(todo)
 			when "complete" then Controller.complete(todo)
