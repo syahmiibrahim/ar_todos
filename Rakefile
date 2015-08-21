@@ -2,6 +2,7 @@ require 'rake'
 require 'rspec/core/rake_task'
 
 require_relative 'config/application'
+require_relative 'db/seeds'
 
 desc "create the database"
 task "db:create" do
@@ -26,7 +27,8 @@ end
 
 desc "populate the test database with sample data"
 task "db:seed" do
-  require APP_ROOT.join('db', 'seeds.rb')
+  # require APP_ROOT.join('db', 'seeds.rb')
+  TasksImporter.import
 end
 
 desc 'Retrieves the current schema version number'
