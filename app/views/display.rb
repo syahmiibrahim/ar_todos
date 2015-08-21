@@ -32,7 +32,8 @@ class Display
 		puts "-" * printing.length + "-" * 12
 
 		viewer.each do |task|
-			printer = printing.length - (task.length - 10) # - 10 to remove first 10 string
+			printer = printing.length - (task.length - 10) 
+			# we minus 10 to remove first 10 string which are id and completed
 			puts "|" + task + " " * printer + "|"
 			end
 
